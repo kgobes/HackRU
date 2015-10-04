@@ -37,12 +37,12 @@ public class spawnCube : MonoBehaviour {
 			speedX *= -1;
 		}
 
-		if (transform.localPosition.y < 1) {
-			transform.localPosition += transform.up * 1;
+		if (transform.localPosition.y < 0.5f) {
+			transform.localPosition += transform.up * Random.Range (-1.0f, 1.0f);
 			speedY *= -1;
 		}
 		if (transform.localPosition.y > 9) {
-			transform.localPosition -= transform.up * 1;
+			transform.localPosition -= transform.up * Random.Range (-1.0f, 1.0f);
 			speedY *= -1;
 		}
 

@@ -68,7 +68,7 @@ public class playerMove : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		if (other.gameObject.name == "Spawn") {
+		if (other.gameObject.name == "enemy") {
 			int lives = GUIManager.getLives ();
 			lives--;
 			if (lives > 0) {
