@@ -3,7 +3,10 @@ using System.Collections;
 
 public class spawnCube : MonoBehaviour {
 
-	public float speed = 100.0f;
+	public float speedZ = 10.0f;
+	public float speedX = 7.0f;
+	public float speedY = 7.0f;
+
 	//Random rand = new Random();
 	/*public Vector3 spawnObject;
 	public float rateOfSpawn=0.5f; //spawn every 0.5 seconds
@@ -18,10 +21,32 @@ public class spawnCube : MonoBehaviour {
 
 	void Update()
 	{
-		transform.localPosition -= transform.forward * speed * Time.deltaTime;
+		transform.localPosition -= transform.forward * speedZ * Time.deltaTime;
+		transform.localPosition += transform.right * speedX * Time.deltaTime;
+		transform.localPosition += transform.up * speedY * Time.deltaTime;
+
 		if (transform.localPosition.z <= -30) {
-			transform.localPosition = new Vector3(Random.Range (-4.0f, 4.0f), 1.0f, 50.0f);
+			transform.localPosition = new Vector3(Random.Range (-4.0f, 4.0f), Random.Range (2.0f, 8.0f), 50.0f);
 		}
+		if (transform.localPosition.x < -4) {
+			transform.localPosition += transform.right * 1;
+			speedX *= -1;
+		}
+		if (transform.localPosition.x > 4) {
+			transform.localPosition -= transform.right * 1;
+			speedX *= -1;
+		}
+
+		if (transform.localPosition.y < 1) {
+			transform.localPosition += transform.up * 1;
+			speedY *= -1;
+		}
+		if (transform.localPosition.y > 9) {
+			transform.localPosition -= transform.up * 1;
+			speedY *= -1;
+		}
+
+
 		/*if(Time.time>nextSpawn){
 			nextSpawn=Time.time + rateOfSpawn;
 			Vector3 spawnBox=transform.localScale;

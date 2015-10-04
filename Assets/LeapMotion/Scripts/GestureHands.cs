@@ -5,10 +5,12 @@ using Leap;
 public class GestureHands : MonoBehaviour {
 	Controller controller;
 	Frame start;
+	public GameObject player;
 	
 	// Use this for initialization
 	void Start () {
 		controller = new Controller();
+		player = GameObject.Find ("Player");
 
 		controller.Config.Save();
 	}
@@ -22,8 +24,15 @@ public class GestureHands : MonoBehaviour {
 
 		//get hand, find axis of rotation and get angle
 		Hand hand = frame.Hands[0];
-		float pitch = hand.Direction.Pitch;
-		float yaw = hand.Direction.Yaw;
+
+		float pitch = (float) (hand.Direction.Pitch * 0.8);
+
+		transform.Rotate(Vector3.right, 2*hand.Direction.Pitch);
+
+		transform.Rotate(Vector3.forward, -hand.Direction.Yaw);
+
+
+		float yaw = (float) (hand.Direction.Yaw * 1.5);
 
 		print (pitch);
 		print (yaw);
