@@ -17,7 +17,6 @@ public class Launch : MonoBehaviour {
 		//StartText.enabled = true;
 		//StartText.text = "Press Space to Start";
 		if (Input.GetButtonDown ("Start")) {
-			print ("Start!");
 			Application.LoadLevel(1);
 		}
 	}

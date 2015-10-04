@@ -28,21 +28,21 @@ public class spawnCube : MonoBehaviour {
 		if (transform.localPosition.z <= -30) {
 			transform.localPosition = new Vector3(Random.Range (-4.0f, 4.0f), Random.Range (2.0f, 8.0f), 50.0f);
 		}
-		if (transform.localPosition.x < -4) {
-			transform.localPosition += transform.right * 1;
+		if (transform.localPosition.x < -4f) {
+			transform.localPosition += transform.right;
 			speedX *= -1;
 		}
-		if (transform.localPosition.x > 4) {
-			transform.localPosition -= transform.right * 1;
+		if (transform.localPosition.x > 4f) {
+			transform.localPosition -= transform.right;
 			speedX *= -1;
 		}
 
-		if (transform.localPosition.y < 0.5f) {
-			transform.localPosition += transform.up * Random.Range (-1.0f, 1.0f);
+		if (transform.localPosition.y < 2f) {
+			transform.localPosition += transform.up;
 			speedY *= -1;
 		}
-		if (transform.localPosition.y > 9) {
-			transform.localPosition -= transform.up * Random.Range (-1.0f, 1.0f);
+		if (transform.localPosition.y > 8f) {
+			transform.localPosition -= transform.up;
 			speedY *= -1;
 		}
 

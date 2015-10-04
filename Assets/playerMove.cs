@@ -3,10 +3,10 @@ using System.Collections;
 using Leap;
 
 public class playerMove : MonoBehaviour {
+
 	public int score = 0;
 	public int subscore = 0;
 	public float speed = 20.0f;
-	private Vector3 moveDirection = Vector3.zero;
 
 	Controller controller;
 	Frame start;
@@ -27,6 +27,7 @@ public class playerMove : MonoBehaviour {
 			score++;
 		}
 		GUIManager.setScore (score);
+
 		Frame frame = controller.Frame ();
 		
 		//GestureList gestures = frame.Gestures();
@@ -56,28 +57,37 @@ public class playerMove : MonoBehaviour {
 		float xfuture = xpos + xtrans;
 		float yfuture = ypos + ytrans;
 
-		if (xfuture <= -4 || xfuture >= 5) {
+		if (xfuture <= -3|| xfuture >= 2.8) {
 			xtrans = 0f;
 		}
-		if (yfuture <= 1 || yfuture >= 10) {
+		if (yfuture <= 0 || yfuture >= 9) {
 			ytrans = 0f;
 		}
+		if (ytrans < 0) {
+			ytrans *= 2f;
+		}
 
-		transform.Translate (xtrans, ytrans, 0f);
+		transform.Translate (xtrans*1.5f, ytrans, 0f);
 
 	}
 
 	void OnTriggerEnter(Collider other){
-		if (other.gameObject.name == "enemy") {
+		print ("-----collision------");
+		if (other.gameObject.name == "Spawn") {
+//			GUIManager.loselife.enabled = true;
+//
+//
+//
+//			GUIManager.loselife.enabled = false;
 			int lives = GUIManager.getLives ();
 			lives--;
 			if (lives > 0) {
 				GUIManager.setLives (lives);
-			} else if (lives == 0) {
+			} 
+			else if (lives == 0) {
 				GUIManager.setLives (lives);
 				GUIManager.endGame (score);
 			}
 		}
-
 	}
 }

@@ -6,14 +6,17 @@ public class GUIManager : MonoBehaviour {
 	public static GUIText Score;
 	public static GUIText Lives;
 	public static GUIText EndGame;
+//	public static GUIText loselife;
 
 	public static int scoreNum;
 	public static int livesNum;
 	// Use this for initialization
 	void Start () {
+		Time.timeScale = 1.0f;
 		scoreNum = 0;
 		livesNum = 3;
 		Score = GameObject.Find ("Score").GetComponent<GUIText> ();
+//		loselife = GameObject.Find ("LoseLife").GetComponent<GUIText> ();
 		Lives = GameObject.Find ("Lives").GetComponent<GUIText> ();
 		EndGame = GameObject.Find ("EndGame").GetComponent<GUIText> ();
 		Score.text = "Score: " + scoreNum;
@@ -21,6 +24,9 @@ public class GUIManager : MonoBehaviour {
 		EndGame.enabled = false;
 		Score.enabled = true;
 		Lives.enabled = true;
+//		loselife.enabled = false;
+		setLives(3);
+		setScore (0);
 
 	}
 
@@ -51,7 +57,7 @@ public class GUIManager : MonoBehaviour {
 			Time.timeScale = 1.0f;
 
 		EndGame.text = "Game Over \n Score: " + finalScore;
-		setLives (3);
+
 		setScore (0);
 		done = true;
 
@@ -67,6 +73,7 @@ public class GUIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown ("Start") && (done)) {
+			done = false;
 			Application.LoadLevel(0);
 		}
 	}
